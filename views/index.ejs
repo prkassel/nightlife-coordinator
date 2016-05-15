@@ -8,12 +8,19 @@
   </head>
   <body>
     <div class="container">
-      <h1>Night Life Coordinator</h1>
-    </div>
-    <div class="form-group">
+      <h1 class="text-center">Night Life Coordinator</h1>
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+    <div class="input-group">
       <input type="text" class="form-control" id="searchbar" placeholder="Search For Bars In Your Area">
+      <span class="input-group-btn">
+      <button id="search" class="btn btn-primary">Search</button>
+    </span>
     </div>
-    <div class="form-group"><button id="search" class="btn btn-lg btn-primary">Search</button></div>
+    <div id="searchResults" style="display:none"></div>
+  </div>
+  </div>
+  </div>
 <script src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous" charset="utf-8"></script>
 <script src="js/main.js" charset="utf-8"></script>
   </body>
