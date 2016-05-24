@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Nightlife Coordinator - <%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+  </head>
+  <body>
+    <!-- Modal -->
+<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign In</h4>
+      </div>
+      <div class="modal-body">
+        <button id="local" class="btn btn-success btn-block">Sign In With My Email</button>
+        <a href="/auth/facebook" id="facebook" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Sign In With Facebook</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginModel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password">
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg">Login</button>
+        </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Night Out</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <% if (user) {%>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= user.local.firstName + " " + user.local.lastName%> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/profile">Profile</a></li>
+              <li><a href="/logout">Logout</a></li>
+            </ul>
+          </li>
+                <% }  else { %>
+            <li><a href="#" data-toggle="modal" data-target="#signIn" >Sign In</a></li>
+            <% } %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
