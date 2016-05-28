@@ -4,8 +4,12 @@ module.exports = function(router, passport) {
 
 /* GET home page. */
 router.get('/', function(req, res) {
+  var name = "";
   console.log(req.user);
-  res.render('index', { title: 'Home', user: req.user});
+  if (req.user) {
+    var name = req.user.local.name || req.user.facebook.name;
+  }
+  res.render('index', { title: 'Home', user: name});
 });
 
 
@@ -35,7 +39,7 @@ router.post('/login', passport.authenticate('local-login', {
 }));
 
 //FACEBOOK AUTH
-router.get('/auth/facebook', passport.authenticate('facebook'));
+router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
 router.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
     successRedirect: '/',
