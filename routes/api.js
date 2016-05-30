@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var User = require('../models/user');
 var Yelp = require('yelp');
 var yelp = new Yelp({
   consumer_key: process.env.YELP_CONSUMER_KEY,
@@ -14,6 +15,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/search/:city', function(req, res) {
+  if (req.user) {
+    User.findOneAndUpdate({'_id': req.user.id}, {location: req.params.city}).exec();
+  }
     yelp.search({term: 'bars', location: req.params.city})
     .then(function(data) {
       res.json(data);

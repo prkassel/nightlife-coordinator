@@ -8,8 +8,9 @@ router.get('/', function(req, res) {
   console.log(req.user);
   if (req.user) {
     var name = req.user.local.name || req.user.facebook.name;
+    var location = req.user.location;
   }
-  res.render('index', { title: 'Home', user: name});
+  res.render('index', { title: 'Home', user: name, location: location});
 });
 
 
