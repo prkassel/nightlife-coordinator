@@ -17,7 +17,8 @@ $('#local').on('click', function() {
 });
 });
 function getLocalResults(searchTerm) {
-    var uri = 'http://localhost:3000/api/search/' + searchTerm;
+    var uri = 'https://prk-night-out.herokuapp.com/' + searchTerm;
+    //var uri = 'http://localhost:3000/api/search/' + searchTerm;
   $.get(uri, function(response) {
     var resultsString = '';
     var searchResults = response.businesses;
