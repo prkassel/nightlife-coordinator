@@ -17,19 +17,18 @@ $('#local').on('click', function() {
 });
 });
 function getLocalResults(searchTerm) {
-    var uri = 'https://prk-night-out.herokuapp.com/api/search/' + searchTerm;
-    //var uri = 'http://localhost:3000/api/search/' + searchTerm;
+    //var uri = 'https://prk-night-out.herokuapp.com/api/search/' + searchTerm;
+    var uri = 'http://localhost:3000/api/search/' + searchTerm;
   $.get(uri, function(response) {
     var resultsString = '';
-    var searchResults = response.businesses;
-    console.log(searchResults);
+    var searchResults = response;
     searchResults.forEach(function(business) {
       resultsString += '<div class="row result">';
-      resultsString += '<div class="col-xs-12 col-sm-3 col-md-2"><img src="' + business.image_url + '"></div>';
+      resultsString += '<div class="col-xs-12 col-sm-3 col-md-2"><img src="' + business.img + '"></div>';
       resultsString +=  '<div class="col-xs-12 col-sm-9 col-md-10"><p><a href="'+business.url+'" target="_blank">' + business.name + '</a>';
-      resultsString += '<img class="rating" src="' + business.rating_img_url + '">';
+      resultsString += '<img class="rating" src="' + business.rating + '">';
       resultsString += '<span class="attending">0 Going</span></p>';
-      resultsString += '<p>' + business.snippet_text + '</p></div>';
+      resultsString += '<p>' + business.snippet + '</p></div>';
       resultsString += '</div>';
     });
     $('#searchResults').html(resultsString);

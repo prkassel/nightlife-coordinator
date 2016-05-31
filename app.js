@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 //uncomment this statement for local development
-//require('dotenv').load();
+require('dotenv').load();
 
 var mongoose = require('mongoose');
 var passport = require('passport');
