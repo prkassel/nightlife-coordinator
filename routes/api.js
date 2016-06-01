@@ -66,4 +66,19 @@ router.get('/search/:city', function(req, res) {
 });
 });
 
+router.get('/rsvp/:bar/', function(req, res) {
+  if (!req.user) {
+    res.json({message: 'You must be logged in to RSVP'});
+  }
+
+  if (req.user) {
+  Bar.findOneAndUpdate({'_id': req.params.bar}, {$push: {attending: req.user.id}}, {new: true}, function(err, response) {
+    if (err) {
+      res.send(err);
+    }
+    res.json(response);
+  });
+}
+});
+
 module.exports = router;
