@@ -1,4 +1,6 @@
 var searchTerm = '';
+var userID = $('#userID').html();
+
 $(document).ready(function() {
   var userLocation = $('#location').html();
   if (userLocation !== '')  {
@@ -20,9 +22,10 @@ $(document).ready(function() {
     var This = $(this);
     var businessID = This.siblings('.businessID').html();
     rsvp(businessID);
+
     function rsvp(businessID) {
-      //var uri = 'http://localhost:3000/api/rsvp/' + businessID;
-      var uri = 'https://prk-night-out.herokuapp.com/api/rsvp/' + businessID;
+      var uri = 'http://localhost:3000/api/rsvp/' + businessID;
+      //var uri = 'https://prk-night-out.herokuapp.com/api/rsvp/' + businessID;
       $.get(uri, function(response) {
         if (response.message) {
           This.parent().append('<div class="alert alert-warning alert-dismissable"><p>'
@@ -35,16 +38,22 @@ $(document).ready(function() {
       }
       });
     }
+
   });
 
 });
 function getLocalResults(searchTerm) {
-    var uri = 'https://prk-night-out.herokuapp.com/api/search/' + searchTerm;
-    //var uri = 'http://localhost:3000/api/search/' + searchTerm;
+    //var uri = 'https://prk-night-out.herokuapp.com/api/search/' + searchTerm;
+    var uri = 'http://localhost:3000/api/search/' + searchTerm;
   $.get(uri, function(response) {
     var resultsString = '';
     var searchResults = response;
     searchResults.forEach(function(business) {
+      var attending = false;
+      if (business.attending.indexOf(userID) > -1) {
+        attending = true;
+        console.log('You are going to ' + business.name);
+      }
       var numAttending = business.attending.length;
       resultsString += '<div class="row result">';
       resultsString += '<div class="col-xs-12 col-sm-3 col-md-2"><img src="' + business.img + '"></div>';
