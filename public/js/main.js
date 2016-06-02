@@ -1,5 +1,7 @@
 var searchTerm = '';
 var userID = $('#userID').html();
+//var url = 'http://localhost:3000/';
+var url = 'https://prk-night-out.herokuapp.com';
 
 $(document).ready(function() {
   var userLocation = $('#location').html();
@@ -24,9 +26,8 @@ $(document).ready(function() {
     rsvp(businessID);
 
     function rsvp(businessID) {
-      //var uri = 'http://localhost:3000/api/rsvp/' + businessID;
-      var uri = 'https://prk-night-out.herokuapp.com/api/rsvp/' + businessID;
-      $.get(uri, function(response) {
+      var api = url + 'api/rsvp/' + businessID;
+      $.get(api, function(response) {
         if (response.message) {
           This.parent().append('<div class="alert alert-warning alert-dismissable"><p>'
           + ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
@@ -47,9 +48,8 @@ $(document).ready(function() {
     cancel(businessID);
 
     function cancel(businessID) {
-      //var uri = 'http://localhost:3000/api/cancel/' + businessID;
-      var uri = 'https://prk-night-out.herokuapp.com/api/cancel/' + businessID;
-      $.get(uri, function(response) {
+      var api = url + 'api/cancel/' + businessID;
+      $.get(api, function(response) {
         This.removeClass('cancel').addClass('rsvp').html('<i class="fa fa-check-square" aria-hidden="true"></i>')
         This.siblings('.attending').html(response.attending.length + ' Going ');
       });
@@ -58,9 +58,8 @@ $(document).ready(function() {
 
 });
 function getLocalResults(searchTerm) {
-    var uri = 'https://prk-night-out.herokuapp.com/api/search/' + searchTerm;
-    //var uri = 'http://localhost:3000/api/search/' + searchTerm;
-  $.get(uri, function(response) {
+    var api = url + 'api/search/' + searchTerm;
+  $.get(api, function(response) {
     var resultsString = '';
     var searchResults = response;
     searchResults.forEach(function(business) {
