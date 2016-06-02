@@ -1,7 +1,6 @@
 var searchTerm = '';
 var userID = $('#userID').html();
-//var url = 'http://localhost:3000/';
-var url = 'https://prk-night-out.herokuapp.com/';
+var url = 'http://localhost:3000/';
 
 $(document).ready(function() {
   var userLocation = $('#location').html();
