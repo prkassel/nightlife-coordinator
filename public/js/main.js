@@ -48,7 +48,7 @@ $(document).ready(function() {
 
     function cancel(businessID) {
       //var uri = 'http://localhost:3000/api/cancel/' + businessID;
-      var uri = 'https://prk-night-out.herokuapp/api/cancel/' + businessID;
+      var uri = 'https://prk-night-out.herokuapp.com/api/cancel/' + businessID;
       $.get(uri, function(response) {
         This.removeClass('cancel').addClass('rsvp').html('<i class="fa fa-check-square" aria-hidden="true"></i>')
         This.siblings('.attending').html(response.attending.length + ' Going ');
