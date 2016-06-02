@@ -81,4 +81,13 @@ router.get('/rsvp/:bar/', function(req, res) {
 }
 });
 
+router.get('/cancel/:bar/', function(req, res) {
+  Bar.findOneAndUpdate({'_id': req.params.bar}, {$pull: {attending: req.user.id}}, {new: true}, function(err, response){
+    if (err) {
+      res.send(err);
+    }
+    res.json(response);
+  });
+});
+
 module.exports = router;

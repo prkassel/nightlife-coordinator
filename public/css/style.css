@@ -30,6 +30,6 @@ a {
   margin-left: 10px;
 }
 
-.rsvp {
+.rsvp, .cancel {
   cursor: pointer;
 }
